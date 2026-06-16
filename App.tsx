@@ -140,7 +140,7 @@ export default function App() {
           // 2. Si oui, on affiche une belle pop-up native
           Alert.alert(
             "✨ Nouvelle version disponible !",
-            "Une mise à jour de Paname Scanner est prête. Veux-tu l'installer maintenant ?",
+            "Une mise à jour de Grand Paname Scanner est prête. Veux-tu l'installer maintenant ?",
             [
               { 
                 text: "Plus tard", 
@@ -510,7 +510,7 @@ export default function App() {
       <View style={styles.header}>
         {/* Le titre est maintenant cliquable secrètement */}
         <TouchableWithoutFeedback onPress={handleTitlePress}>
-          <Text style={styles.title}>🚇 Paname Scanner</Text>
+          <Text style={styles.title}>🚇 Grand Paname Scanner</Text>
         </TouchableWithoutFeedback>
         
         {/* On affiche juste un petit texte si le mode Dev est actif, sinon rien n'apparaît */}
