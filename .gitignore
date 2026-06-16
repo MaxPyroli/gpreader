@@ -41,5 +41,8 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+<<<<<<< HEAD
 .idea/
 *.iml
+=======
+>>>>>>> 3efaf5539a85d4a003c7a4a0a4f2eb5a4d51a67b
