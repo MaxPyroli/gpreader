@@ -182,7 +182,7 @@ export default function App() {
   }
   // --- SCAN INTELLIGENT (Lecture ciblée et rapide) ---
   async function scanPass() {
-    setLog('Analyse en cours...');
+    setLog('Posez le passe au dos du téléphone...');
     setDataList([]);
     setRawLogs([]);
     const extracted: DisplayItem[] = [];
@@ -530,6 +530,29 @@ export default function App() {
       {isDevMode && (
         <TouchableOpacity style={styles.dumpButton} onPress={dumpPass}>
           <Text style={styles.dumpButtonText}>🔴 DUMP INTÉGRAL DE LA PUCE</Text>
+        </TouchableOpacity>
+      )}
+
+      {isDevMode && (
+        <TouchableOpacity 
+          style={[styles.button, { backgroundColor: '#E53935', marginTop: 10 }]} 
+          onPress={async () => {
+            try {
+              Alert.alert("Diagnostic", "Connexion aux serveurs d'Expo...");
+              const update = await Updates.checkForUpdateAsync();
+              if (update.isAvailable) {
+                Alert.alert("Succès", "Mise à jour trouvée ! Téléchargement...");
+                await Updates.fetchUpdateAsync();
+                await Updates.reloadAsync();
+              } else {
+                Alert.alert("Rien de neuf", "Le serveur Expo voit bien ton téléphone, mais dit que ton code est identique.");
+              }
+            } catch (error) {
+              Alert.alert("Crash de connexion", "Erreur absolue : " + String(error));
+            }
+          }}
+        >
+          <Text style={styles.buttonText}>FORCER LA MISE À JOUR OTA</Text>
         </TouchableOpacity>
       )}
 
