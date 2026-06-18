@@ -3,7 +3,7 @@
   "version": "0.0.2alpha",
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
-    "expo": "~56.0.11",
+    "expo": "~56.0.12",
     "expo-clipboard": "~56.0.4",
     "expo-dev-client": "~56.0.20",
     "expo-status-bar": "~56.0.4",
