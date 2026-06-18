@@ -140,7 +140,7 @@ export default function App() {
           // 2. Si oui, on affiche une belle pop-up native
           Alert.alert(
             "✨ Nouvelle version disponible !",
-            "Une mise à jour de Paname Scanner est prête. Veux-tu l'installer maintenant ?",
+            "Une mise à jour de Grand Paname Scanner est prête. Veux-tu l'installer maintenant ?",
             [
               { 
                 text: "Plus tard", 
@@ -182,7 +182,7 @@ export default function App() {
   }
   // --- SCAN INTELLIGENT (Lecture ciblée et rapide) ---
   async function scanPass() {
-    setLog('Analyse en cours...');
+    setLog('Posez le passe au dos du téléphone...');
     setDataList([]);
     setRawLogs([]);
     const extracted: DisplayItem[] = [];
@@ -510,7 +510,7 @@ export default function App() {
       <View style={styles.header}>
         {/* Le titre est maintenant cliquable secrètement */}
         <TouchableWithoutFeedback onPress={handleTitlePress}>
-          <Text style={styles.title}>🚇 Paname Scanner</Text>
+          <Text style={styles.title}>🚇 Grand Paname Scanner</Text>
         </TouchableWithoutFeedback>
         
         {/* On affiche juste un petit texte si le mode Dev est actif, sinon rien n'apparaît */}
@@ -530,6 +530,29 @@ export default function App() {
       {isDevMode && (
         <TouchableOpacity style={styles.dumpButton} onPress={dumpPass}>
           <Text style={styles.dumpButtonText}>🔴 DUMP INTÉGRAL DE LA PUCE</Text>
+        </TouchableOpacity>
+      )}
+
+      {isDevMode && (
+        <TouchableOpacity 
+          style={[styles.button, { backgroundColor: '#E53935', marginTop: 10 }]} 
+          onPress={async () => {
+            try {
+              Alert.alert("Diagnostic", "Connexion aux serveurs d'Expo...");
+              const update = await Updates.checkForUpdateAsync();
+              if (update.isAvailable) {
+                Alert.alert("Succès", "Mise à jour trouvée ! Téléchargement...");
+                await Updates.fetchUpdateAsync();
+                await Updates.reloadAsync();
+              } else {
+                Alert.alert("Rien de neuf", "Le serveur Expo voit bien ton téléphone, mais dit que ton code est identique.");
+              }
+            } catch (error) {
+              Alert.alert("Crash de connexion", "Erreur absolue : " + String(error));
+            }
+          }}
+        >
+          <Text style={styles.buttonText}>FORCER LA MISE À JOUR OTA</Text>
         </TouchableOpacity>
       )}
 
